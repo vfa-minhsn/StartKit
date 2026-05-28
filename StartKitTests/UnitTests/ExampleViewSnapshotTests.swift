@@ -1,13 +1,12 @@
 import SnapshotTesting
 import SwiftUI
-import Testing
 import UIKit
+import XCTest
 @testable import StartKit
 
-@Suite("ExampleView snapshots", .serialized)
-struct ExampleViewSnapshotTests {
-    @Test @MainActor
-    func exampleView_loadedState() async throws {
+final class ExampleViewSnapshotTests: XCTestCase {
+    @MainActor
+    func testExampleView_loadedState() async throws {
         let data = ExampleData(id: "example", content: "ExampleData")
         let mock = MockGetExampleDataUseCase(data: data)
         let viewModel = ExampleViewModel(getExampleDataUseCase: mock)
